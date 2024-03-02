@@ -1,0 +1,36 @@
+1. WHY REACT?
+
+2. HOW TO SETUP REACT WITH VITE:
+   createvite@latest
+
+
+3 Understand Project Structure
+
+4. Delete App.css
+5. Delete all content from index.css
+6. Delete all content from App.jsx
+
+
+Component:
+Aisa code jo reuse ho rha ho:
+har ek file jo ".jsx" wo ek Component hai
+
+
+JSX:
+JavaScript and XML
+
+---> Jo code me HTML and JS sath me likhte hai wo JSX ---convert krke JS bana deta hai
+
+
+
+
+Components: 
+ hi Function hai
+
+
+ JAB KOI FUNCTION HTML ELEMENT RETURN KARE TOH WO COMPONENT HAI 
+
+ Componenko ko export krenge taki baki component use use kar ske
+
+ 1. Component ke naam humesha upper letter me honge
+ 2. Component ek div me hi wrap hoga
