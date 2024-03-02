@@ -1,0 +1,182 @@
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'SF Pro Text';
+}
+
+html,body{
+  width: 100%;
+  height: 100%;
+  background-color: #F2F2F4;
+}
+
+nav{
+  width: 100%;
+  height: 46px;
+  background-color: #454545;
+  color: white;
+}
+
+nav ul{
+  display: flex;
+  color: #8e8e8e;
+  justify-content: space-between;
+  align-items: center;
+  list-style: none;
+  height: 100%;
+  padding: 0 18%;
+  font-size: 12px;
+  /* background-color: red; */
+}
+
+li i{
+  color: #f1f1f1;
+}
+
+#notification{
+  width: 100%;
+  height: 46px;
+  background-color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  
+}
+#notification p{
+  font-size: 14px;
+  font-weight: 300;
+}
+
+#notification p a{
+  color: rgb(28, 96, 206);
+  text-decoration: none;
+}
+
+#notification p a:hover{
+  text-decoration: underline;
+}
+.section{
+  height: 84%;
+  width: 100%;
+  /* background-color: aquamarine; */
+}
+
+.container{
+  width: 50%;
+  height: 100%;
+  /* background-color: yellow;a */
+  margin: 0 auto;
+  padding: 40px 0;
+  text-align: center;
+}
+
+
+
+.img-wrapper img{
+  /* background-color: yellow; */
+  height: 300px;
+}
+
+.primary-heading{
+  font-size: 50px;
+  font-weight: 550;
+  color: #1D1D1F;
+
+}
+
+.secondary-heading{
+  font-size: 28px;
+  font-weight: 400;
+  color: #1D1D1F;
+
+  margin-top: 10px;
+}
+
+.container button{
+  background-color: transparent;
+  border: none;
+  font-size: 20px;
+  color: rgb(68, 109, 230);
+  margin: 20px 0;
+}
+
+.section4{
+  width: 100%;
+  min-height: 90%;
+  background-color: #FFFFFF;
+  padding: 0 15px;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  /* overflow: hidden; */
+}
+
+.box{
+  height: 600px;
+  /* max-height: 200px; */
+  width: 49.5%;
+  margin: 20px 0;
+  text-align: center;
+  padding: 30px;
+
+  /* background-color: red; */
+}
+
+#dibba1{
+  background-color: #fff;
+}
+
+#dibba2{
+  background-color: #fff;
+}
+
+#dibba3{
+  background-color: black;
+}
+
+#dibba4{
+  /* background-color: black; */
+  background: radial-gradient(#0E011D, black);
+}
+#dibba5{
+  background-color: black;
+}
+
+#dibba6{
+  background-color:#fff;
+}
+
+.section5{
+  height: 95%;
+  width: 100%;
+}
+
+
+
+
+.footer{
+  height: 100%;
+  width: 64%;
+  background-color: blue;
+  margin: 0 auto;
+}
+
+
+.carousel{
+  height: 100%;
+}
+
+.carousel-cell {
+  width: 82%;
+  height: 100%;
+  margin-right: 15px;
+  border-radius: 5px;
+  counter-increment: carousel-cell;
+}
+
+.carousel-cell img{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
