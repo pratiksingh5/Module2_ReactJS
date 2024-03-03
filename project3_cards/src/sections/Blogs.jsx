@@ -2,17 +2,20 @@ import Blog from "../components/Blog";
 
 const data1 = {
     author : "Nishant",
-    title: "How rapidly is the Indian startup ecosystem growing?"
+    title: "How rapidly is the Indian startup ecosystem growing?",
+    imgSrc: "https://images.pexels.com/photos/6953929/pexels-photo-6953929.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
 }
 
 const data2 = {
     author : "Meenakshi",
-    title: "How to learn Full stack Development"
+    title: "How to learn Full stack Development",
+    imgSrc: "https://images.pexels.com/photos/4112283/pexels-photo-4112283.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
 }
 
 const data3 = {
     author : "Hema",
-    title: "How to setup GIt in windows"
+    title: "How to setup GIt in windows",
+    imgSrc: "https://images.pexels.com/photos/5052851/pexels-photo-5052851.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
 }
 
 function Blogs() {
