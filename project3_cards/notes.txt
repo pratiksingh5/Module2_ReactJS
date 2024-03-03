@@ -1,0 +1,31 @@
+Step 1: Clear all existing file/code.
+Step 2: Setup Tailwind CSS
+        1. Install Tailwind CSS
+        2. Add the Tailwind directives 
+        3. Install Tailwind CSS Intellisense -> Ctrl + Space
+
+Step 4: Install Extension: ES7+ React/Redux/React-Native snippets
+
+Step 5: Create two folders: 
+        1. sections
+        2. componennts
+
+Step 6: sections: - Blogs.jsx
+        componennts - Blog.jsx
+
+        Section VS componennts
+
+Step 7: Add Google Fonts
+
+Step 8: Create Bloh Section
+
+Step 9: Blog Card and designed
+
+
+Props:
+Jab Ek parent componennts ke through koi data pass ho uske child component me , toh uss "data" ko props bolte hai
+
+You use props to pass data and values from one component to another 
+
+
+react me javascript likhne ke liye {} curly braces ka use karte hai
