@@ -1,0 +1,6 @@
+State kaise bnaye?
+
+1. import useState from react
+2. Default value do state ko
+
+  const [stateKaNaam, woFunctionJoStateKoUpdateKrega] = useState(defaultValueofTHeState);
