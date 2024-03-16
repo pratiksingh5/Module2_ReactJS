@@ -1,0 +1,60 @@
+Step 1:
+Create React App and Setup Tailwind CSS
+
+Step 2:
+Create UI Screen for Input Field and Add Button
+
+Step 3:
+Create UI Screen for Todo List
+
+Step 4:
+    - Add onChange Event on Input Field
+      <input onChange>
+    - Create a handleInput method and write console, also add in input Field
+        const handleInput = () => {
+            console.log("Hiii)
+        }
+         <input onChange = {handleInput}>
+
+Step 5: Pass event in the handleInput method
+    -    const handleInput = (event) => {
+            console.log(event.target.value)
+        }
+        <input onChange = (event) => handleInput(event)>
+
+Step 6: Create state named as item
+        const [item, setItem] = useState("")
+
+Step 7: Create state named as item
+        const handleInput = (event) => {
+            setItem(event.target.value)
+        }
+
+Step 8: Create state named as todos which will be an array
+        const [todos, setTodos] = useState([])
+
+Step 9: Create a function name as addItems and add this function in add Button
+        const addItems =() => {
+            console.log("Hello)
+        }
+        <Button onClick = {addItems}></Button>
+
+Step 10: setItems in the todo
+        const addItems =() => {
+            setTodos(...todo, item)
+        }
+        <Button onClick = {addItems}></Button>
+
+Step 11: Render todos in the list
+         {todos.map((todo, i)=> {
+            return (
+                <div key={i}>{todo}</div>
+            )
+         })}
+
+Step 12: Add validation that input should not be empty
+        const addItems =() => {
+            if(items !== ""){
+              setTodos(...todo, item)
+            }
+        }
