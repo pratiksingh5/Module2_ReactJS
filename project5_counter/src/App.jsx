@@ -5,7 +5,11 @@ function App() {
   const [count, setCount] = useState(0);
 
   const handleIncrease = () => {
-    setCount(count + 1)
+   setCount((pichlaWalaState) => pichlaWalaState + 1);
+   setCount((pichlaWalaState) => pichlaWalaState + 1);
+   setCount((pichlaWalaState) => pichlaWalaState + 1);
+   setCount((pichlaWalaState) => pichlaWalaState + 1);
+
   }
 
   const handleDecrease = () => {
