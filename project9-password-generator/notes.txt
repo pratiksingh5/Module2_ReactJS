@@ -1,0 +1,18 @@
+1. Setup React Project
+
+2. Delete By default template
+
+3. Setup Tailind CSS
+
+4. Create UI for the App
+
+5. Lenght state banyi aur use onChange pe handle kiya
+
+
+      // isse hume randoNumber mila jo ki humesha 1 se 52 me range krega 
+
+      // Math.floor ---> Point ke pehle ka value deta hai -- jaise agar 33.45566 --> 33 
+      // Math.random -- random number dega par kuch aisa 0.8786362365326 
+      // str = > koi string hai 
+      // str.length ==> 52 
+      // 0.99 * 60 ==> 52 se kam yaa jyada ?? 
