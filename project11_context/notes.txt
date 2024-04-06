@@ -1,0 +1,10 @@
+1. Project Setup
+2. App.jsx ko clear and Tailwind Setup
+
+
+1. 2 Problems Faced:
+    1. Props Driliing --> Matlab Grand Parent se Parent ko data the Parent se Child ko Data Props ke through pass karna
+    2. Agar hum Panel me state bnate toh hum , Panel component se Header component ko data ni bhej pate kynki React me data uni direction hota hai , Top to Down (Parent to Child)
+
+
+3. useState, useEffect, useContext

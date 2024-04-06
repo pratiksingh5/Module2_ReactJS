@@ -1,0 +1,7 @@
+.panel{
+  width: calc(100% - 320px);
+}
+
+.down{
+  height: calc(100vh - 5rem);
+}
