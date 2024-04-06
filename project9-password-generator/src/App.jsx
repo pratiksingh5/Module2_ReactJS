@@ -1,12 +1,16 @@
-import  { useState } from "react";
+import  { useState, useEffect } from "react";
 
 
 function App() {
 
-  const [length, setLength] = useState(14);
-  const [password, setPassword] = useState("qwerty");
+  const [length, setLength] = useState(6);
+  const [password, setPassword] = useState("");
   const [numberAllowed , setNumberAllowed] = useState(false);
   const [specialCharAllowed , setSpecialCharAllowed] = useState(false);
+
+ useEffect(()=>{
+  generatePassword();
+ } , [numberAllowed, specialCharAllowed, length])
 
 
   const handleLengthChange = (event) => {
@@ -41,7 +45,7 @@ function App() {
         <div className="p-10 flex flex-col gap-10">
           <div className="flex gap-4">
           <input type="text" className="h-10 text-slate-800 text-lg px-4" value={password}/>
-          <button className="py-2 px-8 bg-blue-600 rounded-lg" onClick={generatePassword}>Generate</button>
+          {/* <button className="py-2 px-8 bg-blue-600 rounded-lg" onClick={generatePassword}>Generate</button> */}
           </div>
 
           <div className="flex gap-6">

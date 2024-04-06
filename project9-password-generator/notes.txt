@@ -16,3 +16,39 @@
       // str = > koi string hai 
       // str.length ==> 52 
       // 0.99 * 60 ==> 52 se kam yaa jyada ?? 
+
+
+
+LIFE CYCLE METHODS:
+Component based:
+Functional Component: --> useEffect Hook
+
+
+Birth, Changes, Expire
+
+Birth: Mounting
+ComponentDidMount
+
+useEffect(()=>{
+      yahan pe jo bhi code likhenge wo uss component ke first load pe run hoga
+},[])
+
+
+Changes: Updating
+ComponentDidUpdate
+
+useEffect(()=>{
+    yahan pe jo bhi code hoga, wo fir se run hoga agar dependency state me change hoga
+},[dependency1. dependency2])
+
+
+Expire: Unmount
+ComponentDidUnmount
+
+useEffect(()=>{
+   
+   return() => {
+      jab bhi ye component close hoga tab ye code chalega
+   }
+
+},[dependency1. dependency2])
