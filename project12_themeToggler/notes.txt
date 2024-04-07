@@ -1,0 +1,61 @@
+Theme Toggler
+
+1. Vite Prject Setup
+2. Tailwind Setup
+
+3. Dark Mode in Tailwind
+   dark: className
+
+  darkMode: "class", in tailwind.config
+
+
+4. Create the UI
+  Using the Snippets 
+  1. Button --> Checkbox
+  2. Card
+
+
+5. Create Context
+
+    ThemeContext.jsx:
+
+    import React from "react";
+    const ThemeContext = React.createContext();
+    export default ThemeContext;
+
+
+    Create ThemContext and ThemeProvider in one file
+
+    Create Custom Hook
+
+
+6. App ko Provider se Wrap krenge with values
+
+
+7. App.jsx me state bnayenge:
+    const [theme, setTheme] = useState("light");
+
+  const lightTheme = () => {
+    setTheme("light");
+  }
+
+  const darkTheme = () => {
+    setTheme("dark");
+  }
+
+  ek state theme aur 2 method jonki state ko change krenge
+
+
+  8. Handle LifeCycle of toggle:
+
+    useEffect(() => {
+    document.querySelector('html').classList.remove("light", "dark");
+    document.querySelector('html').classList.add(theme);
+  },  [theme])
+
+  Jaise Jaise theme change hoga waise ye class light or dark add/remove hoga
+
+
+  9. <ThemeProvider value={theme, lightTheme, darkTheme}> sare state aur function as a value pass kr diya
+
+        <input type="checkbox" value="" className="sr-only peer" onChange={handleToggleTheme} checked = {true} />
