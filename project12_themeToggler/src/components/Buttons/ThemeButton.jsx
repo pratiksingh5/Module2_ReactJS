@@ -3,6 +3,8 @@ import useTheme from "../../../contexts/ThemeContext";
 
 function ThemeButton() {
   const { theme, darkTheme, lightTheme } = useTheme();
+  // const { theme, darkTheme, lightTheme } = useContext(ThemeContext);
+
 
   const handleToggleTheme = (e) => {
     const darkModeStatus = e.currentTarget.checked;

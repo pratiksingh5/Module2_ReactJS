@@ -1,0 +1,28 @@
+Step 1:
+    - Setup Vite Project
+    - Remove Default Code
+    - Setup Tailwind
+
+
+Step 2:
+    - created UI components
+    - TodoForm
+    - TodoItems
+    - Imported in App.jsx
+
+
+Step 3: [Context]
+    - Create contexts folder
+    - create context file
+    - createContext(),
+    - create Provider
+    - App.jsx ko Provider ke andar wrap karna
+    - Provider me state pass karne honge jise kisi bhi component me access kar sake
+
+Step 4: [READ]
+    - Hard codeed Data ko read kiya
+    - Hardcoded arraya banaya sampleTodos
+    - sampleTodos will be an array of object
+    - sampleTodos ko map kiya and uske TodoItem
+    - TodoItem me todo props ko pass kar diya
+    - TodoItem me todo ke basis pe value show kiya aur isCompleted ko conditional UI show kiya
