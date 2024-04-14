@@ -9,7 +9,6 @@ function App() {
    setCount((pichlaWalaState) => pichlaWalaState + 1);
    setCount((pichlaWalaState) => pichlaWalaState + 1);
    setCount((pichlaWalaState) => pichlaWalaState + 1);
-
   }
 
   const handleDecrease = () => {

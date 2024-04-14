@@ -9,10 +9,10 @@ function App() {
             My Tasker
           </h1>
           <div className="mb-4">
-            Form
+            TodoForm Component
           </div>
           <div className="flex flex-wrap gap-y-3">
-             Item
+             TodoItem Component
           </div>
         </div>
       </div>

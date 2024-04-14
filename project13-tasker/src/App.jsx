@@ -5,21 +5,58 @@ import { TodoProvider } from "./contexts";
 function App() {
   const [todos, setTodos] = useState([]);
 
-  const sampleTodos = [
-    {
-      id: 1,
-      task: "Sample Task 1",
-      isCompleted: false,
-    },
-    {
-      id: 1,
-      task: "Sample Task 2",
-      isCompleted: true,
-    },
-  ];
+  const addTodo = (todo) => {
+    setTodos((prevTodos) => [...prevTodos, todo]);
+  };
+
+  // const todo = {
+  //   id : 5,
+  //   task: "update",
+  //   isCompleted: false
+  // }
+
+  const editTodo = (todo) => {
+    console.log("edit hua");
+    setTodos((prev) => prev.map((prevTodo) => (prevTodo.id === todo.id ? todo : prevTodo)))
+    // setTodos((prevTodos) =>  
+    //   prevTodos.map((oldTodo) => (oldTodo.id === todo.id ? todo : oldTodo));
+    //   // pehle pata krna pdega hai ki kise update krna hai? 
+    //   console.log("prevTodos", prevTodos)
+
+    //   // prevTodos.map((item) => {
+    //   //   // console.log("item", item);
+    //   //   // console.log("item ki id", item.id);
+    //   //   // console.log("todo ki id", todo.id);
+    //   //  return ( item.id === todo.id ? todo : item)
+    //   // })
+
+    // });
+  };
+
+
+  console.log("todos", todos)
+
+  // todo = {
+  //   task: "Hello Task",
+  //   isCompleted: false,
+  //   id : 123
+  // }
+
+  // const sampleTodos = [
+  //   {
+  //     id: 1,
+  //     task: "Sample Task 1",
+  //     isCompleted: false,
+  //   },
+  //   {
+  //     id: 1,
+  //     task: "Sample Task 2",
+  //     isCompleted: true,
+  //   },
+  // ];
 
   return (
-    <TodoProvider value={{ sampleTodos }}>
+    <TodoProvider value={{ todos, addTodo , editTodo}}>
       <div className="bg-[#000] min-h-screen w-full flex">
         <div className="left w-[500px] bg-red-400 h-screen">
           <img
@@ -36,9 +73,9 @@ function App() {
             <TodoForm />
           </div>
           <div className="flex flex-wrap gap-y-3">
-            {sampleTodos.map((todo) => (
+            {todos.map((todo) => (
               <div className="w-full" key={todo.id}>
-                <TodoItem todo = {todo} />
+                <TodoItem todo={todo} />
               </div>
             ))}
           </div>

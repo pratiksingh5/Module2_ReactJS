@@ -15,6 +15,7 @@ Step 3: [Context]
     - Create contexts folder
     - create context file
     - createContext(),
+    - custom Hook useTodo
     - create Provider
     - App.jsx ko Provider ke andar wrap karna
     - Provider me state pass karne honge jise kisi bhi component me access kar sake
@@ -26,3 +27,20 @@ Step 4: [READ]
     - sampleTodos ko map kiya and uske TodoItem
     - TodoItem me todo props ko pass kar diya
     - TodoItem me todo ke basis pe value show kiya aur isCompleted ko conditional UI show kiya
+
+
+Step 5:
+    - Remove Hard code data
+
+// todos -> Array of Objects
+// todo -> Object
+// task -> string
+
+
+handleSubmit
+task
+
+//Step 6 Add Functionality
+Created state for task ko ji string hoga  , jisme hum e.target.vale save krenge
+Input field ke onChange pe setState kiya
+Created method onSubmit
