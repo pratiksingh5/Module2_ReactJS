@@ -17,10 +17,12 @@ function App() {
 
   const editTodo = (todo) => {
     console.log("edit hua");
-    setTodos((prev) => prev.map((prevTodo) => (prevTodo.id === todo.id ? todo : prevTodo)))
-    // setTodos((prevTodos) =>  
+    setTodos((prev) =>
+      prev.map((prevTodo) => (prevTodo.id === todo.id ? todo : prevTodo))
+    );
+    // setTodos((prevTodos) =>
     //   prevTodos.map((oldTodo) => (oldTodo.id === todo.id ? todo : oldTodo));
-    //   // pehle pata krna pdega hai ki kise update krna hai? 
+    //   // pehle pata krna pdega hai ki kise update krna hai?
     //   console.log("prevTodos", prevTodos)
 
     //   // prevTodos.map((item) => {
@@ -29,12 +31,10 @@ function App() {
     //   //   // console.log("todo ki id", todo.id);
     //   //  return ( item.id === todo.id ? todo : item)
     //   // })
-
     // });
   };
 
-
-  console.log("todos", todos)
+  console.log("todos", todos);
 
   // todo = {
   //   task: "Hello Task",
@@ -55,8 +55,24 @@ function App() {
   //   },
   // ];
 
+  const toggleComplete = (id) => {
+    console.log("code run hua")
+    console.log("ID AYAA", id)
+
+    setTodos((prev) =>  
+      prev.map((prevTodo) =>
+        prevTodo.id === id ?  {...prevTodo, isCompleted:  !prevTodo.isCompleted}: prevTodo)
+    );
+  };
+  
+  const deleteTodo = (id) => {
+    console.log("click")
+    setTodos((prev) => prev.filter((prevTodo) => prevTodo.id !== id))
+  }
+
+
   return (
-    <TodoProvider value={{ todos, addTodo , editTodo}}>
+    <TodoProvider value={{ todos, addTodo, editTodo, toggleComplete , deleteTodo}}>
       <div className="bg-[#000] min-h-screen w-full flex">
         <div className="left w-[500px] bg-red-400 h-screen">
           <img

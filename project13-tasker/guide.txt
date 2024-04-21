@@ -44,3 +44,10 @@ task
 Created state for task ko ji string hoga  , jisme hum e.target.vale save krenge
 Input field ke onChange pe setState kiya
 Created method onSubmit
+
+
+20.04.2024:
+
+1. Delete
+2. On Complete -> DONE
+3. Save on the Local storage
