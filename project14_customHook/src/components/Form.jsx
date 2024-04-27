@@ -1,41 +1,44 @@
-import React, { useState } from "react";
+import { useState } from "react";
+import useForm from "../hooks/useForm";
 
 function Form() {
-  const [name, setName] = useState("");
-  const [password, setPassword] = useState("");
-  const [nameError, setNameError] = useState("");
-  const [passwordError, setPasswordError] = useState("");
+  // const [name, setName] = useState("");
+  // const [password, setPassword] = useState("");
+  // const [nameError, setNameError] = useState("");
+  // const [passwordError, setPasswordError] = useState("");
+  // const a =  useForm();
+  // console.log("a", a)
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    // console.log("function is working");
-    // console.log("name", name);
-    // console.log("password", password);
+  const {values, errors, handleChange, handleSubmit} = useForm()
 
-    if (name.trim() !== "") {
-      // console.log("form continue kro");
-      setNameError("");
-    } else {
-      // console.log("warning do");
-      setNameError("Name is Required");
-      return;
-    }
+  // const handleSubmit = (e) => {
+  //   e.preventDefault();
+  //   // console.log("function is working");
+  //   // console.log("name", name);
+  //   // console.log("password", password);
 
-    if (password.trim() !== "") {
-      console.log("pass form continue kro");
-      setPasswordError("");
-    } else {
-      console.log("Password is required")
-      setPasswordError("Password is required");
-      return;
-      // console.log("pass warning do");
-    }
+  //   if (name.trim() !== "") {
+  //     // console.log("form continue kro");
+  //     setNameError("");
+  //   } else {
+  //     // console.log("warning do");
+  //     setNameError("Name is Required");
+  //   }
 
+  //   if (password.trim() !== "") {
+  //     console.log("pass form continue kro");
+  //     setPasswordError("");
+  //   } else {
+  //     console.log("Password is required");
+  //     setPasswordError("Password is required");
 
-    console.log("Form is valid");
-    // setName("");
-    // setPassword("")
-  };
+  //     // console.log("pass warning do");
+  //   }
+
+  //   console.log("Form is valid");
+  //   // setName("");
+  //   // setPassword("")
+  // };
 
   return (
     <div className="w-full max-w-xs">
@@ -54,13 +57,19 @@ function Form() {
             className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
             id="name"
             type="text"
-            name="aman"
+            name="name"
             placeholder="Username"
-            onChange={(e) => {
-              setName(e.target.value);
-            }}
+            value={values.name}
+            // onChange={(e) => {
+            //   setName(e.target.value);
+            // }}
+            onChange={(e) => handleChange(e)}
           />
-                   {nameError ? <p className="text-red-500 text-xs italic">{nameError}</p>: "" }
+          {errors.name ? (
+            <p className="text-red-500 text-xs italic">{errors.name}</p>
+          ) : (
+            ""
+          )}
         </div>
         <div className="mb-6">
           <label
@@ -73,13 +82,21 @@ function Form() {
             className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
             id="password"
             type="password"
+            name="password"
             placeholder="******************"
-            onChange={(e) => {
-              setPassword(e.target.value);
-            }}
-          />
-          {passwordError ? <p className="text-red-500 text-xs italic">{passwordError}</p>: "" }
+            value={values.password}
 
+            // onChange={(e) => {
+            //   setPassword(e.target.value);
+            // }}
+            onChange={(e) => handleChange(e)}
+
+          />
+          {errors.password ? (
+            <p className="text-red-500 text-xs italic">{errors.password }</p>
+          ) : (
+            ""
+          )}
         </div>
         <div className="flex items-center justify-between">
           <button
