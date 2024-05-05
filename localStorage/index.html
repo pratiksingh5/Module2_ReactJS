@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Local Storage</h1>
+
+    <script>
+        // Data ko Save karna ---> String me save hota hai -- setItem
+        // Data ko Get karna  ---> Object me get hota hai --- getItem
+
+        let password = "qwerty";
+
+        // localStorage.setItem(key, value);
+        localStorage.setItem('lockerKaNaam', password);
+
+        let pass = localStorage.getItem('lockerKaNaam');
+        console.log("pss", pass);
+
+        let obj = {
+            name : "kohli",
+            team: "rcb"
+        }
+
+        // JSON.stringify() -- Jab bhi set krenge 
+
+        localStorage.setItem("player", JSON.stringify(obj));
+
+        // let playerGet = localStorage.getItem('player');
+        // let convertedData = JSON.parse(playerGet)
+        // console.log("playerGet", playerGet)
+
+        // console.log("convertedData", convertedData)
+
+        let playerGet = JSON.parse(localStorage.getItem("player"))
+
+    </script>
+</body>
+</html>

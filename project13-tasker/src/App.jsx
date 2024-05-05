@@ -1,9 +1,22 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { TodoForm, TodoItem } from "./components";
 import { TodoProvider } from "./contexts";
 
 function App() {
-  const [todos, setTodos] = useState([]);
+  const [todos, setTodos] = useState(JSON.parse(localStorage.getItem("tasks")) || []);
+
+  useEffect(() => {
+  // console.log("state update ho rha hai", Date.now());
+  localStorage.setItem("tasks", JSON.stringify(todos))
+  } , [todos])
+
+  useEffect(() => {
+    const todos = JSON.parse(localStorage.getItem("tasks"));
+
+    if(todos && todos.length > 0){
+      setTodos(todos)
+    }
+  }, [])
 
   const addTodo = (todo) => {
     setTodos((prevTodos) => [...prevTodos, todo]);
@@ -16,7 +29,7 @@ function App() {
   // }
 
   const editTodo = (todo) => {
-    console.log("edit hua");
+    // console.log("edit hua");
     setTodos((prev) =>
       prev.map((prevTodo) => (prevTodo.id === todo.id ? todo : prevTodo))
     );
@@ -34,7 +47,7 @@ function App() {
     // });
   };
 
-  console.log("todos", todos);
+  // console.log("todos", todos);
 
   // todo = {
   //   task: "Hello Task",
@@ -56,8 +69,8 @@ function App() {
   // ];
 
   const toggleComplete = (id) => {
-    console.log("code run hua")
-    console.log("ID AYAA", id)
+    // console.log("code run hua")
+    // console.log("ID AYAA", id)
 
     setTodos((prev) =>  
       prev.map((prevTodo) =>
@@ -66,7 +79,7 @@ function App() {
   };
   
   const deleteTodo = (id) => {
-    console.log("click")
+    // console.log("click")
     setTodos((prev) => prev.filter((prevTodo) => prevTodo.id !== id))
   }
 
