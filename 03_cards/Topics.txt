@@ -1,0 +1,7 @@
+1. What is Props?
+
+2. How to pass props from parent Component to child Component
+
+3.How to map data 
+
+4. What is key: Unique element

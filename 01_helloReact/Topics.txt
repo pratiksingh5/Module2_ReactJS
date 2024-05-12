@@ -1,0 +1,9 @@
+1. What is ReactJS?
+    Library Vs Framework --> Library
+
+2. Why we should use React?
+
+3. Features of React
+
+4. How to setup a react project with vite
+
