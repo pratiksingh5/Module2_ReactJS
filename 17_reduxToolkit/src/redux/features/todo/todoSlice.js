@@ -12,11 +12,14 @@ const todoSlice = createSlice({
     initialState : initialState,
     reducers: {
         addTodo : () => {
-            //defination
+            //definition
+        },
+        deleteTodo: () => {
+            //definition
         }
     }
 })
 
-export const { addTodo } = todoSlice.actions;
+export const { addTodo, deleteTodo } = todoSlice.actions;
 
 export default todoSlice.reducer;

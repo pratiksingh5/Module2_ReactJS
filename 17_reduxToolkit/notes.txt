@@ -1,4 +1,4 @@
 1. Why we need Redux?
 
 2. Install redux toolkit
-3. Install redux
+3. Install react-redux
