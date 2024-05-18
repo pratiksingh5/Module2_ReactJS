@@ -1,22 +1,9 @@
 import TodoForm from "./components/TodoForm";
 import TodoItem from "./components/TodoItem";
-
-const sampleTodos = [
-  {
-    id: 1,
-    text: "Item 1",
-  },
-  {
-    id: 2,
-    text: "Item 2",
-  },
-  {
-    id: 3,
-    text: "Item 3",
-  },
-];
+import { useSelector } from "react-redux";
 
 function App() {
+  const todos = useSelector((state)=> state.todos)
   return (
     <div className="bg-[#000] min-h-screen w-full flex">
       <div className="left w-[500px] bg-red-400 h-screen">
@@ -32,9 +19,9 @@ function App() {
           <TodoForm />
         </div>
         <div className="flex flex-wrap gap-y-3 w-full">
-          {sampleTodos.map((todo, index) => (
+          {todos.map((todo, index) => (
             <div key={index} className="w-full">
-              <TodoItem />
+              <TodoItem item = {todo}/>
             </div>
           ))}
         </div>

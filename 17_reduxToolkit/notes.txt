@@ -2,3 +2,15 @@
 
 2. Install redux toolkit
 3. Install react-redux
+
+
+
+1. useDispatch ---> state me koi change krenge>=-- dispatch [SET]
+
+const dispatch = useDispatch();
+
+dispatch(reducerFn(...))
+
+2. useSelector ----> state ki value access yaa get krne ke liye [GET]
+
+const data = useSelecter((state) => state.products)
