@@ -1,8 +1,12 @@
+import { Header, Footer } from "./components";
+import { Outlet } from "react-router-dom";
 
 const App = () => {
   return (
-    <div>
-      Hello
+    <div className="w-full ">
+      <Header/>
+       <Outlet/>
+      <Footer/>
     </div>
   );
 };

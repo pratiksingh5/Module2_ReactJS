@@ -1,0 +1,7 @@
+1. React Router DOM
+2. Redux Toolkit + react-redux
+
+Create Folder
+1. pages 
+2. Components
+3. Store
