@@ -5,3 +5,41 @@ Create Folder
 1. pages 
 2. Components
 3. Store
+
+
+
+
+Day 1:
+Application Setup 
+Tailwind Setup
+ShadCN Setup
+
+
+Day 2:
+{AppWRITE}
+Account Creation on AppWrite
+Project Create on AppWrite
+Database create
+    Collection: blogs --> atrribute (title, mainImg, description, )
+Bucket Create
+Settings
+
+
+Day 3:
+
+Env Setup
+config object -keys
+
+
+Day 4:
+Appwrite -> auth.js -- class(Backend)
+
+Day 5: 
+Application Architechture
+Routing 
+Outlet
+
+Day 6:
+Header Design
+Footer Design
+Cards Design

@@ -3,10 +3,12 @@ import { Outlet } from "react-router-dom";
 
 const App = () => {
   return (
-    <div className="w-full ">
-      <Header/>
-       <Outlet/>
-      <Footer/>
+    <div className="w-full max-container">
+      <Header />
+      <main >
+        <Outlet />
+      </main>
+      <Footer />
     </div>
   );
 };

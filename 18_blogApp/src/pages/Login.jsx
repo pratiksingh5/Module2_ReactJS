@@ -1,9 +1,7 @@
-import React from 'react'
+import { LoginForm } from "@/components";
 
 const Login = () => {
-  return (
-    <div>Login</div>
-  )
-}
+  return <LoginForm title = "Login"/>;
+};
 
-export default Login
+export default Login;

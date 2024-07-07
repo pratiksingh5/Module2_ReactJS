@@ -4,8 +4,8 @@
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
+    --background: #0D0D0D;
+    --foreground: #fff;
 
     --card: 0 0% 100%;
     --card-foreground: 222.2 84% 4.9%;
@@ -13,7 +13,7 @@
     --popover: 0 0% 100%;
     --popover-foreground: 222.2 84% 4.9%;
 
-    --primary: 222.2 47.4% 11.2%;
+    --primary: #0BB3FB;
     --primary-foreground: 210 40% 98%;
 
     --secondary: 210 40% 96.1%;
@@ -69,8 +69,18 @@
 @layer base {
   * {
     @apply border-border;
+    font-family: "Plus Jakarta Sans", sans-serif;
   }
   body {
     @apply bg-background text-foreground;
+  }
+  input{
+    outline: none
+  }
+}
+
+@layer components{
+  .max-container{
+    @apply max-w-[1440px] mx-auto px-24;
   }
 }

@@ -14,6 +14,7 @@ import AllBlogs from './pages/AllBlogs.jsx';
 import CreateBlog from './pages/CreateBlog.jsx';
 import EditBlog from './pages/EditBlog.jsx';
 import Blog from './pages/Blog.jsx';
+import NotFound from './pages/NotFound.jsx';
 
 
 const router = createBrowserRouter([
@@ -42,10 +43,15 @@ const router = createBrowserRouter([
         element: <EditBlog/>
       },
       {
-        path: "/blog",
+        path: "/blog/:id",
         element: <Blog/>
       },
     ]
+  },
+
+  {
+    path: "*",
+    element: <NotFound/>
   },
 
 ])

@@ -1,8 +1,8 @@
-import React from 'react'
+import { LoginForm } from "@/components"
 
 const SignUp = () => {
   return (
-    <div>SignUp</div>
+    <LoginForm title = "Sign Up"/>
   )
 }
 
