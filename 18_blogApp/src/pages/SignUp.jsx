@@ -1,8 +1,8 @@
-import { LoginForm } from "@/components"
+import { Signup } from "@/components"
 
 const SignUp = () => {
   return (
-    <LoginForm title = "Sign Up"/>
+    <Signup/>
   )
 }
 
