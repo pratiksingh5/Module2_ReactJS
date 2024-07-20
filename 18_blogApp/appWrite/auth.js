@@ -13,7 +13,7 @@ export class AuthService {
   }
 
   async createAccount({ email, password, name }) {
-    try {
+    try { 
       const userAccount = await this.account.create(
         ID.unique(),
         email,
@@ -21,7 +21,6 @@ export class AuthService {
         name
       );
       if (userAccount) {
-        // do something
         // Yahan login krwaynege that means yahan login call krenge
         return this.login({email, password})
       }

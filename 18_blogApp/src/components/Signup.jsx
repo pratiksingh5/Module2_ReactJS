@@ -1,23 +1,35 @@
-import React from "react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 // import { AuthService } from "appWrite/auth";
 import { AuthService } from "../../appWrite/auth";
-
+import toast from "react-hot-toast";
 
 const Signup = () => {
   const navigate = useNavigate();
   const { register, handleSubmit } = useForm();
 
+  const auth = new AuthService();
+
   const createAccount = async (data) => {
-    try{
-        console.log("Hello", data)
-    // const user = AuthService.createAccount()
-    }
-    catch(err){
-        console.log(err)
+    try {
+      // console.log("Hello", data);
+      const body = {
+        name: data.name,
+        email: data.email,
+        password: data.password,
+      };
+
+      const userData = await auth.createAccount(body);
+      if (userData) {
+        toast.success("Successfully Account created!");
+        console.log("userData", userData);
+        navigate("/");
+      }
+    } catch (err) {
+      console.log(err);
+      toast.error(err.message);
     }
   };
 
@@ -55,7 +67,6 @@ const Signup = () => {
           type="password"
           required
           {...register("confirmpassword")}
-
         />
         <Button className="w-[200px] h-12"> Sign Up</Button>
         <span

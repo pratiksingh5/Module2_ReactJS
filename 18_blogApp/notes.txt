@@ -43,3 +43,12 @@ Day 6:
 Header Design
 Footer Design
 Cards Design
+
+
+
+
+Sign UP:
+
+1. Form Field Blank hojaye
+2. User Looged(All Post) pe redirect hojaye
+3. Agar Error ho toh error show kre
