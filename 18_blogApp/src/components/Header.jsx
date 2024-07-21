@@ -1,10 +1,65 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { useNavigate } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
+import { AuthService } from "../../appWrite/auth";
+import { logout } from "@/store/authSlice";
+
 
 const Header = () => {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  // const [isLoggedIn, setIsLoggedIn] = useState(false);
   const navigate = useNavigate();
+  // const authStatus = useSelector((state) => console.log(state));
+  const authStatus = true;
+  const auth = new AuthService;
+  const dispatch = useDispatch();
+  // const authStatus = false;
+
+
+  useEffect(() => {
+  
+  }, [authStatus])
+
+  const navItems = [
+    {
+      name: "Home",
+      route: "/",
+      active: true,
+    },
+    {
+      name: "Login",
+      route: "/login",
+      active: !authStatus,
+    },
+    {
+      name: "Signup",
+      route: "/signup",
+      active: !authStatus,
+    },
+    // {
+    //   name: "All Post",
+    //   route: "/all-post",
+    //   active: authStatus,
+    // },
+    {
+      name: "Add Blog",
+      route: "/create-blog",
+      active: authStatus,
+    },
+    {
+      name: "Edit Blog",
+      route: "/edit-blog",
+      active: authStatus,
+    },
+  ];
+
+  const handleLogout =  () => {
+     auth.logout().then(() => {
+      dispatch(logout());
+      navigate('/login')
+     })
+  }
+
   return (
     <header className="flex justify-between items-center mt-8 h-20 bg-[#171717] px-8">
       <div className="logo">
@@ -22,18 +77,25 @@ const Header = () => {
         </svg>
       </div>
       <nav>
-        {isLoggedIn ? (
-          <ul className="flex items-center gap-6">
-            <li className="cursor-pointer">Write Blog</li>
-            <li className="cursor-pointer">Sign out</li>
-          </ul>
-        ) : (
-          <ul className="flex items-center gap-6">
-            <li className="cursor-pointer" onClick={() => navigate('/login')}>
-              <Button className="bg-transparent border border-primary">Login</Button>
+        <ul className="flex gap-6 items-center">
+          {navItems.map((item) =>
+            item.active ? (
+              <li key={item.name} className="cursor-pointer">
+                <button onClick={() => navigate(item.route)}>
+                  {" "}
+                  {item.name}{" "}
+                </button>
+              </li>
+            ) : null
+          )}
+          {authStatus && (
+            <li className="cursor-pointer" onClick={() => navigate("/login")}>
+              <Button className="bg-transparent border border-primary" onClick = {handleLogout}>
+                Logout
+              </Button>
             </li>
-          </ul>
-        )}
+          )}
+        </ul>
       </nav>
     </header>
   );

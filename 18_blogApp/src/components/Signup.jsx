@@ -5,10 +5,13 @@ import { useForm } from "react-hook-form";
 // import { AuthService } from "appWrite/auth";
 import { AuthService } from "../../appWrite/auth";
 import toast from "react-hot-toast";
+import { useDispatch } from "react-redux";
+import { login } from "@/store/authSlice";
 
 const Signup = () => {
   const navigate = useNavigate();
   const { register, handleSubmit } = useForm();
+  const dispatch = useDispatch();
 
   const auth = new AuthService();
 
@@ -25,6 +28,7 @@ const Signup = () => {
       if (userData) {
         toast.success("Successfully Account created!");
         console.log("userData", userData);
+        dispatch(login(userData))
         navigate("/");
       }
     } catch (err) {
