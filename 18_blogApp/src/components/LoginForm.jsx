@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
-import { AuthService } from "../../appWrite/auth";
+import { AuthService } from "../appWrite/auth";
 import { useDispatch } from "react-redux";
 import { login } from "@/store/authSlice";
 

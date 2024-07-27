@@ -1,9 +1,13 @@
-import React from 'react'
+import React from "react";
+import PostForm from "@/components/PostForm";
 
-const EditBlog = () => {
-  return (
-    <div>EditBlog</div>
-  )
+const post = {
+  title: "Purana Post",
+  slug: "puarana-post"
 }
 
-export default EditBlog
+const EditBlog = () => {
+  return <PostForm  type="Edit" post={post} />;
+};
+
+export default EditBlog;

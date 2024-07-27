@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { AuthService } from "../../appWrite/auth";
+import { AuthService } from "../appWrite/auth";
 import { logout } from "@/store/authSlice";
 
 

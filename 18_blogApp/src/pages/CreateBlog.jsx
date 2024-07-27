@@ -1,9 +1,7 @@
-import React from 'react'
+import PostForm from "@/components/PostForm";
 
 const CreateBlog = () => {
-  return (
-    <div>CreateBlog</div>
-  )
-}
+  return <PostForm type="Create"/>;
+};
 
-export default CreateBlog
+export default CreateBlog;
