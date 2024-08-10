@@ -1,13 +1,15 @@
 import config from "../config/index";
-import { Client, Databases, Query } from "appwrite";
+import { Client, Databases, ID, Query, Storage } from "appwrite";
 
-class BlogService {
+export class BlogService {
   client = new Client();
   databases;
+  bucket;
 
   constructor() {
     this.client.setEndpoint(config.BACKEND_URL).setProject(config.PROJECT_KEY);
     this.databases = new Databases(this.client);
+    this.bucket = new Storage(this.client);
   }
 
   async createPost({ title, slug, content, mainImage, status, userId }) {
@@ -107,5 +109,47 @@ class BlogService {
 
   // uploadFile()
   // deleteFile()
-  //  getFilePreview() 
+  // getFilePreview()
+
+  async uploadFile(file) {
+    try {
+      const response = await this.bucket.createFile(
+        config.BUCKET_KEY,
+        ID.unique(),
+        file
+      );
+      return response;
+    } catch (err) {
+      console.log(err);
+      return false;
+    }
+  }
+
+  async deleteFile(fileId){
+    try {
+      await this.bucket.deleteFile(config.BUCKET_KEY, fileId)
+      return true
+    }
+    catch(err){
+      console.log(err);
+      return false
+    }
+  }
+
+  async getFilePreview(fileId) {
+    try {
+       const response = await this.bucket.getFilePreview(config.BUCKET_KEY, fileId);
+       return response;
+    }
+    catch(err){
+      console.log(err);
+      return false
+    }
+  }
 }
+
+// export const service = new BlogService()
+
+const service = new BlogService();
+
+export default service;

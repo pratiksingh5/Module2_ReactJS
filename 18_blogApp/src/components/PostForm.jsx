@@ -1,8 +1,13 @@
-import React from "react";
+import React, { useState } from "react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { useForm } from "react-hook-form";
 import RTE from "@/components/RTE/RTE";
+import { useSelector } from "react-redux";
+import toast from "react-hot-toast";
+// import { service } from "@/appWrite/blogService"; // const se export
+import BlogService from "@/appWrite/blogService"; // default se export
+
 import {
   Select,
   SelectContent,
@@ -11,19 +16,69 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 
-const PostForm = ({type, post}) => {
+const PostForm = ({ type, post }) => {
+
+  const [slug, setSlug] = useState("")
+  // who is logged in or getting userInfo
+  // const userData = useSelector((state) => state.auth.userData);
+
   const { register, handleSubmit } = useForm({
     defaultValues: {
-        title: post ? post.title : "",
-        slug: post ? post.slug : "",
-
-    }
+      title: post ? post.title : "",
+      slug: post ? post.slug : "",
+      content: post ? post.content : "",
+      status: post ? post.status : "active",
+    },
   });
+
+  //convert title to custom URL
+
+  // const name = "  Java Script   ";
+  // const newName = name.trim()
+  // Java Script
+
+  // regex for removing spaces within the text 
+
+  // .replace(/\s+/g, '') 
+  // JavaScript
+
+
+  const generateUrl = (title) => {
+    return title
+        .toLowerCase() // Convert to lowercase
+        .replace(/[^\w\s-]/g, '') // Remove all non-alphanumeric characters except hyphens and spaces
+        .trim() // Trim leading and trailing whitespace
+        .replace(/\s+/g, '-') // Replace spaces with hyphens
+        .replace(/-+/g, '-'); // Replace multiple hyphens with a single hyphen
+};
+
+const blogTitle = "How to use Redux";
+const customUrl = generateUrl(blogTitle);
+
+console.log(customUrl); // Output: "how-to-use-redux"
+
+
+  const submit = async (data) => {
+    console.log("data", data);
+    if (type === "Create") {
+      // Create Post API Calls
+      try {
+        // createPost
+      } catch (err) {
+        toast.error("Failed to Create Post");
+      }
+    } else if (type === "Edit") {
+      // Update Post API calls
+    }
+  };
 
   return (
     <div className="min-h-screen py-8">
       <h1 className="font-semibold text-xl md:text-3xl">{type} Blog</h1>
-      <form className="bg-[#f0f0f0] text-slate-800 py-8 px-6 my-8 rounded-2xl flex flex-col gap-4">
+      <form
+        onSubmit={handleSubmit(submit)}
+        className="bg-[#f0f0f0] text-slate-800 py-8 px-6 my-8 rounded-2xl flex flex-col gap-4"
+      >
         <Input
           className="h-12 bg-foreground"
           placeholder="Blog Title"
@@ -31,14 +86,17 @@ const PostForm = ({type, post}) => {
           {...register("title", {
             minLength: 4,
             maxLength: 40,
+            required: true,
           })}
         />
         <Input
           className="h-12 bg-foreground"
           placeholder="Custom URL"
           type="text"
-          required
-          {...register("slug")}
+          {...register("slug", {
+            required: true,
+          })}
+          value = {slug}
         />
         <div className="flex w-full justify-between">
           <Input
@@ -46,21 +104,23 @@ const PostForm = ({type, post}) => {
             placeholder="Custom URL"
             type="file"
             required
-            {...register("main-image")}
+            accept="image/png, image/jpg, image/jpeg"
+            {...register("mainImage")}
           />
-          <Select className="bg-slate-50">
+          <Select className="bg-slate-50" {...register("status")}>
             <SelectTrigger className="w-[48%] h-12 bg-white">
-              <SelectValue placeholder="Theme" />
+              <SelectValue placeholder="Status" />
             </SelectTrigger>
             <SelectContent>
-              <SelectItem value="light">Light</SelectItem>
-              <SelectItem value="dark">Dark</SelectItem>
-              <SelectItem value="system">System</SelectItem>
+              <SelectItem value="active">Active</SelectItem>
+              <SelectItem value="inactive">Inactive</SelectItem>
             </SelectContent>
           </Select>
         </div>
-        <RTE/>
-        <Button className="w-[200px] h-12"> Create</Button>
+        <RTE />
+        <Button className="w-[200px] h-12">
+          {type === "Create" ? "Create" : "Update"}{" "}
+        </Button>
       </form>
     </div>
   );
