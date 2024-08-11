@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { useForm } from "react-hook-form";
@@ -17,12 +17,10 @@ import {
 } from "@/components/ui/select";
 
 const PostForm = ({ type, post }) => {
-
-  const [slug, setSlug] = useState("")
   // who is logged in or getting userInfo
   // const userData = useSelector((state) => state.auth.userData);
 
-  const { register, handleSubmit } = useForm({
+  const { register, handleSubmit, watch, setValue, control } = useForm({
     defaultValues: {
       title: post ? post.title : "",
       slug: post ? post.slug : "",
@@ -37,29 +35,55 @@ const PostForm = ({ type, post }) => {
   // const newName = name.trim()
   // Java Script
 
-  // regex for removing spaces within the text 
+  // regex for removing spaces within the text
 
-  // .replace(/\s+/g, '') 
+  // .replace(/\s+/g, '')
   // JavaScript
 
+  // const generateUrl = (title) => {
+  //   console.log("function call");
+  //   return title
+  //     .toLowerCase() // Convert to lowercase
+  //     .replace(/[^\w\s-]/g, "") // Remove all non-alphanumeric characters except hyphens and spaces
+  //     .trim() // Trim leading and trailing whitespace
+  //     .replace(/\s+/g, "-") // Replace spaces with hyphens
+  //     .replace(/-+/g, "-"); // Replace multiple hyphens with a single hyphen
+  // };
 
-  const generateUrl = (title) => {
-    return title
+  const generateUrl = useCallback((title) => {
+    if (title && typeof title === "string") {
+      console.log("function call");
+      return title
         .toLowerCase() // Convert to lowercase
-        .replace(/[^\w\s-]/g, '') // Remove all non-alphanumeric characters except hyphens and spaces
+        .replace(/[^\w\s-]/g, "") // Remove all non-alphanumeric characters except hyphens and spaces
         .trim() // Trim leading and trailing whitespace
-        .replace(/\s+/g, '-') // Replace spaces with hyphens
-        .replace(/-+/g, '-'); // Replace multiple hyphens with a single hyphen
-};
+        .replace(/\s+/g, "-") // Replace spaces with hyphens
+        .replace(/-+/g, "-"); // Replace multiple hyphens with a single hyphen
+    }
+    return "";
+  }, []);
 
-const blogTitle = "How to use Redux";
-const customUrl = generateUrl(blogTitle);
+  useEffect(() => {
+    //  console.log("Hello");
+    const monitor = watch((value, data) => {
+      //  console.log("value", value)
+      //  console.log("data", data)
+      if (data.name === "title") {
+        // console.log("User enters on title")
+        setValue("slug", generateUrl(value.title), { shouldValidate: true });
+      }
+    });
 
-console.log(customUrl); // Output: "how-to-use-redux"
+    return () => monitor.unsubscribe();
+  }, [watch]);
+  // const blogTitle = "How to use Redux";
+  // const customUrl = generateUrl(blogTitle);
 
+  // console.log(customUrl); // Output: "how-to-use-redux"
 
   const submit = async (data) => {
     console.log("data", data);
+    console.log("userData")
     if (type === "Create") {
       // Create Post API Calls
       try {
@@ -96,7 +120,6 @@ console.log(customUrl); // Output: "how-to-use-redux"
           {...register("slug", {
             required: true,
           })}
-          value = {slug}
         />
         <div className="flex w-full justify-between">
           <Input
@@ -117,8 +140,8 @@ console.log(customUrl); // Output: "how-to-use-redux"
             </SelectContent>
           </Select>
         </div>
-        <RTE />
-        <Button className="w-[200px] h-12">
+        <RTE name="content" control={control} defaultValue="" />
+        <Button type="submit" className="w-[200px] h-12">
           {type === "Create" ? "Create" : "Update"}{" "}
         </Button>
       </form>

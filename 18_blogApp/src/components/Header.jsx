@@ -9,8 +9,8 @@ import { logout } from "@/store/authSlice";
 const Header = () => {
   // const [isLoggedIn, setIsLoggedIn] = useState(false);
   const navigate = useNavigate();
-  // const authStatus = useSelector((state) => console.log(state));
-  const authStatus = true;
+  // const authStatus = useSelector((state) => state.auth.status);
+  const authStatus = false;
   const auth = new AuthService;
   const dispatch = useDispatch();
   // const authStatus = false;
