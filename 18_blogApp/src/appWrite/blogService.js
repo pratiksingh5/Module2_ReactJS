@@ -34,7 +34,7 @@ export class BlogService {
     }
   }
 
-  async updatePost({ title, slug, content, mainImage, status }) {
+  async updatePost(postId ,{ title, slug, content, mainImage, status }) {
     try {
       const result = await this.databases.updateDocument(
         config.DATABASE_KEY,

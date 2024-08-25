@@ -5,6 +5,7 @@ import { useForm } from "react-hook-form";
 import RTE from "@/components/RTE/RTE";
 import { useSelector } from "react-redux";
 import toast from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
 // import { service } from "@/appWrite/blogService"; // const se export
 import BlogService from "@/appWrite/blogService"; // default se export
 
@@ -18,7 +19,10 @@ import {
 
 const PostForm = ({ type, post }) => {
   // who is logged in or getting userInfo
-  // const userData = useSelector((state) => state.auth.userData);
+
+  const navigate = useNavigate()
+  const userData = useSelector((state) => state.userData);
+  console.log(userData)
 
   const { register, handleSubmit, watch, setValue, control } = useForm({
     defaultValues: {
@@ -88,11 +92,42 @@ const PostForm = ({ type, post }) => {
       // Create Post API Calls
       try {
         // createPost
+        const file = await BlogService.uploadFile(data.mainImage[0])
+        // console.log("file uploaded", file)
+        if(file) {
+          const fileId = file.$id;
+          data.mainImage = fileId;
+
+          const dbPostCreate = await BlogService.createPost({...data, userId: userData.$id});
+
+          if(dbPostCreate){
+            navigate("/")
+          }
+        }
       } catch (err) {
         toast.error("Failed to Create Post");
       }
     } else if (type === "Edit") {
       // Update Post API calls
+
+      try{
+         if(post){
+          const file = data.mainImage[0] ? await BlogService.uploadFile(data.mainImage[0]) : null;
+
+          if(file){
+            BlogService.deleteFile(post.$id)
+          }
+
+          const dbPostUpdate = await BlogService.updatePost(post.$id,  {...data, mainImage: file ? file.$id: undefined})
+
+          if(dbPostUpdate){
+            navigate("/")
+          }
+         }
+      }
+      catch(err){
+        toast.error("Failed to Edit Post");
+      }
     }
   };
 

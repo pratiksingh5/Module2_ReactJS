@@ -7,18 +7,19 @@ import { logout } from "@/store/authSlice";
 
 
 const Header = () => {
-  // const [isLoggedIn, setIsLoggedIn] = useState(false);
   const navigate = useNavigate();
-  // const authStatus = useSelector((state) => state.auth.status);
-  const authStatus = false;
+  const authStatus = useSelector((state) => state.status);
+  console.log("authStatus")
+  // const authStatus = false;
   const auth = new AuthService;
   const dispatch = useDispatch();
   // const authStatus = false;
 
 
   useEffect(() => {
-  
-  }, [authStatus])
+  console.log("auth status changed")
+  console.log(authStatus)
+  }, [authStatus, dispatch])
 
   const navItems = [
     {
@@ -36,11 +37,6 @@ const Header = () => {
       route: "/signup",
       active: !authStatus,
     },
-    // {
-    //   name: "All Post",
-    //   route: "/all-post",
-    //   active: authStatus,
-    // },
     {
       name: "Add Blog",
       route: "/create-blog",
@@ -62,6 +58,7 @@ const Header = () => {
 
   return (
     <header className="flex justify-between items-center mt-8 h-20 bg-[#171717] px-8">
+      
       <div className="logo">
         <svg
           width="132"
