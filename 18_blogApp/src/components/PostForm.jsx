@@ -105,6 +105,7 @@ const PostForm = ({ type, post }) => {
           }
         }
       } catch (err) {
+        console.log(err)
         toast.error("Failed to Create Post");
       }
     } else if (type === "Edit") {

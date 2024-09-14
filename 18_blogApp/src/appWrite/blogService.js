@@ -114,7 +114,7 @@ export class BlogService {
   async uploadFile(file) {
     try {
       const response = await this.bucket.createFile(
-        config.BUCKET_KEY,
+        "66cb059c003d77e41edd",
         ID.unique(),
         file
       );

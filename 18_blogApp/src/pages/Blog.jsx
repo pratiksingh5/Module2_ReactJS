@@ -1,8 +1,23 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
+import BlogService  from "@/appWrite/blogService";
 
 const Blog = () => {
-  const { id } = useParams();
+  const { slug } = useParams();
+  const [blogData, setBlogData] = useState(null);
+
+  useEffect(() => {
+
+    const getPostData = async () => {
+      const response = await BlogService.getPost(slug); 
+      console.log(response);
+      setBlogData(response)
+    }
+
+    getPostData()
+
+  }, [])
+  // console.log("slug", slug);
 
   return (
     <div className="blog-wrapper w-full py-10">
@@ -15,19 +30,10 @@ const Blog = () => {
       </div>
       <div className="blog-content flex flex-col gap-8 py-16 px-36">
         <h1 className="text-3xl font-bold">
-          Meta has collaborated with the Ministry Of Electronics And Information
-          Technology to surface web3-based startups.
+          {blogData?.title}
         </h1>
         <div className="blog-body">
-          <p>
-            Sociis natoque penatibus et magnis dis parturient montes. Ridiculus
-            mus mauris vitae ultricies leo. Neque egestas congue quisque egestas
-            diam. Risus in hendrerit gravida rutrum quisque. Viverra mauris in
-            aliquam sem. At risus viverra adipiscing at in tellus. Sociis
-            natoque penatibus et magnis dis parturient montes. Ridiculus mus
-            mauris vitae ultricies leo. Neque egestas congue quisque egestas
-            diam. Risus in hendrerit gravida rutrum quisque non.
-          </p>
+          {blogData?.content}
         </div>
       </div>
     </div>
