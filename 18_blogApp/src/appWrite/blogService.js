@@ -139,7 +139,7 @@ export class BlogService {
   async getFilePreview(fileId) {
     try {
        const response = await this.bucket.getFilePreview(config.BUCKET_KEY, fileId);
-       return response;
+       return response.href;
     }
     catch(err){
       console.log(err);

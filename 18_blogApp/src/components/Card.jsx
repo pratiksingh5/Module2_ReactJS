@@ -16,8 +16,8 @@ const Card = ({ author, image, title, id }) => {
 
   useEffect(() => {
     BlogService.getFilePreview(image).then((img) => {
-      console.log("img");
-      setImgLink(img.href);
+      console.log("img", img);
+      setImgLink(img);
     });
   }, []);
 
@@ -52,7 +52,7 @@ const Card = ({ author, image, title, id }) => {
                 {" "}
                 <span style={{backgroundColor: "red"}} onClick={(e) => {
                    e.stopPropagation();
-                   navigate("/edit-blog")
+                   navigate(`/edit-blog/${id}`)
                 }}>Edit</span>{" "}
               </DropdownMenuItem>
               <DropdownMenuItem>

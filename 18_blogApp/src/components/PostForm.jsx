@@ -27,7 +27,7 @@ const PostForm = ({ type, post }) => {
   const { register, handleSubmit, watch, setValue, control } = useForm({
     defaultValues: {
       title: post ? post.title : "",
-      slug: post ? post.slug : "",
+      slug: post ? post.$id : "",
       content: post ? post.content : "",
       status: post ? post.status : "active",
     },
