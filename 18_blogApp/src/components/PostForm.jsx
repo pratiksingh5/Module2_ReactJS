@@ -6,6 +6,7 @@ import RTE from "@/components/RTE/RTE";
 import { useSelector } from "react-redux";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
+import { Label } from "@/components/ui/label";
 // import { service } from "@/appWrite/blogService"; // const se export
 import BlogService from "@/appWrite/blogService"; // default se export
 
@@ -17,12 +18,12 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 
-const PostForm = ({ type, post }) => {
+const PostForm = ({ type, post, imageName }) => {
   // who is logged in or getting userInfo
 
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const userData = useSelector((state) => state.userData);
-  console.log(userData)
+  console.log(userData);
 
   const { register, handleSubmit, watch, setValue, control } = useForm({
     defaultValues: {
@@ -87,46 +88,57 @@ const PostForm = ({ type, post }) => {
 
   const submit = async (data) => {
     console.log("data", data);
-    console.log("userData")
+    console.log("userData");
     if (type === "Create") {
       // Create Post API Calls
       try {
         // createPost
-        const file = await BlogService.uploadFile(data.mainImage[0])
+        const file = await BlogService.uploadFile(data.mainImage[0]);
         // console.log("file uploaded", file)
-        if(file) {
+        if (file) {
           const fileId = file.$id;
           data.mainImage = fileId;
 
-          const dbPostCreate = await BlogService.createPost({...data, userId: userData.$id});
+          const dbPostCreate = await BlogService.createPost({
+            ...data,
+            userId: userData.$id,
+          });
 
-          if(dbPostCreate){
-            navigate("/")
+          if (dbPostCreate) {
+            navigate("/");
           }
         }
       } catch (err) {
-        console.log(err)
+        console.log(err);
         toast.error("Failed to Create Post");
       }
     } else if (type === "Edit") {
       // Update Post API calls
 
-      try{
-         if(post){
-          const file = data.mainImage[0] ? await BlogService.uploadFile(data.mainImage[0]) : null;
+      try {
+        if (post) {
+          console.log("Update clicked")
+          const file = data.mainImage[0]
+            ? await BlogService.uploadFile(data.mainImage[0])
+            : null;
 
-          if(file){
-            BlogService.deleteFile(post.$id)
+          console.log("file", file)
+
+          if (file) {
+            console.log("delete file")
+            BlogService.deleteFile(post.$id);
           }
 
-          const dbPostUpdate = await BlogService.updatePost(post.$id,  {...data, mainImage: file ? file.$id: undefined})
+          const dbPostUpdate = await BlogService.updatePost(post.$id, {
+            ...data,
+            mainImage: file ? file.$id : undefined,
+          });
 
-          if(dbPostUpdate){
-            navigate("/")
+          if (dbPostUpdate) {
+            navigate("/");
           }
-         }
-      }
-      catch(err){
+        }
+      } catch (err) {
         toast.error("Failed to Edit Post");
       }
     }
@@ -158,17 +170,45 @@ const PostForm = ({ type, post }) => {
           })}
         />
         <div className="flex w-full justify-between">
-          <Input
-            className="h-12 bg-foreground w-[48%] cursor-pointer"
-            placeholder="Custom URL"
-            type="file"
-            required
-            accept="image/png, image/jpg, image/jpeg"
-            {...register("mainImage")}
-          />
+          {imageName ? (
+            <div>
+              <Label
+                htmlFor="picture"
+                className="h-12 px-6 flex justify-center items-center bg-white"
+              >
+                {" "}
+                {"+ "}
+                {imageName}
+              </Label>
+
+              <Input
+                className={`h-12 bg-foreground w-[48%] cursor-pointer ${imageName ? "opacity-0" : ""}`}
+                placeholder="Custom URL"
+                type="file"
+                id="picture"
+                accept="image/png, image/jpg, image/jpeg"
+
+              />
+            </div>
+          ) : (
+            <Input
+              className={`h-12 bg-foreground w-[48%] cursor-pointer ${
+                imageName ? "hidden" : ""
+              } `}
+              placeholder="Custom URL"
+              type="file"
+              required
+              id="picture"
+              accept="image/png, image/jpg, image/jpeg"
+              {...register("mainImage")}
+            />
+          )}
+
+          {/* <Label htmlFor="picture" className="h-12 px-6 flex justify-center items-center bg-white"> {"+ "}{imageName}</Label> */}
+
           <Select className="bg-slate-50" {...register("status")}>
             <SelectTrigger className="w-[48%] h-12 bg-white">
-              <SelectValue placeholder="Status" />
+              <SelectValue placeholder= {post ? post.status : "active"}/> 
             </SelectTrigger>
             <SelectContent>
               <SelectItem value="active">Active</SelectItem>
@@ -176,7 +216,7 @@ const PostForm = ({ type, post }) => {
             </SelectContent>
           </Select>
         </div>
-        <RTE name="content" control={control} defaultValue="" />
+        <RTE name="content" control={control} defaultValue={post ? post.content: ""} />
         <Button type="submit" className="w-[200px] h-12">
           {type === "Create" ? "Create" : "Update"}{" "}
         </Button>

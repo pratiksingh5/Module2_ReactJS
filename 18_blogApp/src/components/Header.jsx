@@ -42,11 +42,11 @@ const Header = () => {
       route: "/create-blog",
       active: authStatus,
     },
-    {
-      name: "Edit Blog",
-      route: "/edit-blog",
-      active: authStatus,
-    },
+    // {
+    //   name: "Edit Blog",
+    //   route: "/edit-blog",
+    //   active: authStatus,
+    // },
   ];
 
   const handleLogout =  () => {

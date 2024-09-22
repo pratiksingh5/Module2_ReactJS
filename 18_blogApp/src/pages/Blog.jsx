@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import BlogService  from "@/appWrite/blogService";
+import parse from 'html-react-parser';
 
 const Blog = () => {
   const { slug } = useParams();
@@ -35,7 +36,7 @@ const Blog = () => {
         {blogData?.title}
       </h1>
       <div className="blog-body">
-        {blogData?.content}
+         { parse(blogData?.content)}
       </div>
     </div>
   </div>

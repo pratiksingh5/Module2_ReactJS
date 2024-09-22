@@ -20,7 +20,7 @@ const AllBlogs = () => {
 
   return (
     <div className="flex flex-wrap gap-12 py-10">
-      {blogs.length > 0
+      {blogs && blogs.length > 0
         ? blogs.map((blog) => {
             return (
               <Card
@@ -28,6 +28,7 @@ const AllBlogs = () => {
                 image={blog.mainImage}
                 title={blog.title}
                 id={blog.$id}
+                setBlogs = {setBlogs}
               />
             );
           })

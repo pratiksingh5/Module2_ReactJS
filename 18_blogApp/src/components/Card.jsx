@@ -10,8 +10,9 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import toast from "react-hot-toast";
 
-const Card = ({ author, image, title, id }) => {
+const Card = ({ author, image, title, id, setBlogs }) => {
   const [imgLink, setImgLink] = useState("");
 
   useEffect(() => {
@@ -20,6 +21,20 @@ const Card = ({ author, image, title, id }) => {
       setImgLink(img);
     });
   }, []);
+
+  const handleDelete = async (id) => {
+    console.log("id", id);
+    try {
+      await BlogService.deletePost(id);
+      toast.success("Delete Successfully");
+      BlogService.getAllPost([]).then((updatedBlogs) => {
+        setBlogs(updatedBlogs.documents);
+      });
+
+    } catch (err) {
+      toast.error("failed to delete");
+    }
+  };
 
   const navigate = useNavigate();
 
@@ -50,17 +65,27 @@ const Card = ({ author, image, title, id }) => {
             <DropdownMenuContent>
               <DropdownMenuItem>
                 {" "}
-                <span style={{backgroundColor: "red"}} onClick={(e) => {
-                   e.stopPropagation();
-                   navigate(`/edit-blog/${id}`)
-                }}>Edit</span>{" "}
+                <span
+                  style={{ backgroundColor: "red" }}
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    navigate(`/edit-blog/${id}`);
+                  }}
+                >
+                  Edit
+                </span>{" "}
               </DropdownMenuItem>
               <DropdownMenuItem>
-              {" "}
-                <span onClick={(e) => {
-                   e.stopPropagation();
-                  //  navigate("/edit-blog")
-                }}>Delete</span>{" "}
+                {" "}
+                <span
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    handleDelete(id);
+                    //  navigate("/edit-blog")
+                  }}
+                >
+                  Delete
+                </span>{" "}
               </DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>

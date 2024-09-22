@@ -146,6 +146,16 @@ export class BlogService {
       return false
     }
   }
+
+  async getFileName(fileId) {
+    try {
+       const response = await this.bucket.getFile(config.BUCKET_KEY, fileId);
+       return response;
+    }
+    catch(err){
+      console.log(err);
+    }
+  }
 }
 
 // export const service = new BlogService()
